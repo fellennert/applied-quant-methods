@@ -2,7 +2,9 @@
 title: "Learning R — Getting Started"
 author: "Felix Lennert"
 date: "knit on `r lubridate::today()`"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 csl: ASA.csl
 bibliography: applied-quantitative-methods.bib
 ---
@@ -18,7 +20,7 @@ in the following, you will receive a gentle introduction to R. In the first part
 
 There are loads of resources online and I do not claim this introduction to be exhaustive. To acknowledge this shortcoming, every part ends with links leading you to further resources. However, the fact that I included them probably means that I have read them and more or less integrated their content into the tutorial -- so keep striving for more resources (and send me links)!
 
-In general, this tutorial was heavily inspired by Richard Cotton's "Learning R" [@cotton2013] and Hadley Wickham's and Garrett Grolemund's "R for Data Science" (abbreviated with R4DS). The latter can be found [online](https://r4ds.had.co.nz) [@wickham2016a]. We will not immediately start out with the packages from the *tidyverse* (although [some strong points](http://varianceexplained.org/r/teach-tidyverse/) have been made in favor of doing so right from the start). I will rather try to build some sort of foundation from where we can proceed to the tidy packages in the following lessons. Hence, one can also understand this tutorial as an introduction to the *tidyverse* [@wickham2019c] (or *hadleyverse*, as it was named originally), even though I will not introduce it in this very first part. 
+In general, this tutorial was heavily inspired by Richard Cotton's "Learning R" [@cotton2013] and Hadley Wickham's and Garrett Grolemund's "R for Data Science" (abbreviated with R4DS). The latter can be found [online](https://r4ds.had.co.nz) [@wickham2016a]. We will not immediately start out with the packages from the `tidyverse` (although [some strong points](http://varianceexplained.org/r/teach-tidyverse/) have been made in favor of doing so right from the start). I will rather try to build some sort of foundation from where we can proceed to the tidy packages in the following lessons. Hence, one can also understand this tutorial as an introduction to the `tidyverse` [@wickham2019c] (or `hadleyverse`, as it was named originally), even though I will not introduce it in this very first part. 
 When it comes to what I would refer to as the "daily workflow" with R and RStudio, Jennifer Bryan's blog articles have been a big inspiration for me. You will stumble across her work when we deal with the `purrr` package as well.  
 When looking at RMarkdown, I will mainly build on "R Markdown: The Definitive Guide" -- which is also freely available online [@xie2018].
 
@@ -31,7 +33,7 @@ On top of the page, you will find a box with three links that refer to different
 
 ![Fig. 1: the CRAN webpage](figures/cran.png) 
 
-After the download is finished, just execute the installer and, when it is done, you can proceed with the installation of RStudio.. 
+After the download is finished, just execute the installer and, when it is done, you can proceed with the installation of RStudio. 
 
 New versions of R are released multiple times per year. If you want to update your R, the process is the same as installing it from scratch: go to [https://cran.r-project.org](https://cran.r-project.org), download the latest version, install it, and that is it.
 
@@ -42,8 +44,6 @@ New versions of R are released multiple times per year. If you want to update yo
 When you are on a Windows or Mac machine and you click the R icon, a window (the so-called Mac or Windows GUI -- graphic user interface) that looks pretty much like your machine's terminal will appear. You could now just type R code in there and execute it -- and, in fact, that is how the users did it the ancient way. In my opinion, this is fairly inconvenient. Luckily, we have progressed a lot from that and come up with IDEs (integrated development environments) for R. The most popular among them is RStudio which we will use as well.
 
 To install RStudio, just click on [this link](https://rstudio.com/products/rstudio/download/), choose the right version (i.e., RStudio Desktop -- Open Source License), and hit the download button. After downloading it, you simply install it, and thereafter you are good to go.
-
-Please note that you have to install both, R and RStudio. The latter is only a tool that helps you working with the former. 
 
 ### Setting up RStudio
 
@@ -70,14 +70,14 @@ My RStudio layout looks like this:
 
 ![Fig. 3: my RStudio layout](figures/rstudio-layout.png)
 
-How you accomplish this? Preferences >> Pane Layout.
+How you accomplish this? `Preferences >> Pane Layout`.
 
 Other strongly recommended settings (ordered by Options section):
 
-* General: Never save your work space, this makes you lazy (read more [here](https://rstats.wtf/save-source.html))
-* Code: some "Display" settings make your life easier; also set default encoding to UTF-8 in the "Save" section  
-* Appearance: check out some themes (I use: RStudio theme "Modern", Editor font "Courier", Font size 11, and Editor theme "Cobalt") 
-* Panes layout: feel free to set them up the way I did
+* `General`: Never save your work space, this makes you lazy (read more [here](https://rstats.wtf/save-source.html))
+* `Code`: some "Display" settings make your life easier; also set default encoding to UTF-8 in the "Save" section  
+* `Appearance`: check out some themes (I use: RStudio theme "Modern", Editor font "Courier", Font size 11, and Editor theme "Cobalt") 
+* `Panes layout`: feel free to set them up the way I did
 
 More can be found [here](https://drdoane.com/my-rstudio-configuration/).
 
@@ -97,42 +97,42 @@ I start out making points on why using Projects is useful. Then, I will provide 
 ### Motivation
 
 If you analyze data with R, one of the first things you do is to load in the data that you want to perform your analyses on. Then, you perform your analyses on them, and save the results in the (probably) same directory.  
-When you load a data set into R, you might use the `readr` package and do read_csv(absolute_file_path.csv). This becomes fairly painful if you need to read in more than one data set. Then, relative paths (i.e., where you start from a certain point in your file structure, e.g., your file folder) become more useful. 
-How you CAN go across this is to use the `setwd(absolute_file_path_to_your_directory)` function. Here, `set` stands for set and `wd` stands for working directory. If you were not sure about what the current working directory actually is, you can use `getwd()` which is the equivalent to `setwd(file_path)`. This enables you to read in a data set -- if the file is in the working directory -- by only using `read_csv(file_name.csv)`.  
+When you load a data set into R, you might use the `readr` package and do `read_csv(absolute_file_path.csv)`. This becomes fairly painful if you need to read in more than one data set. Then, relative paths (i.e., where you start from a certain point in your file structure, e.g., your file folder) become more useful. 
+How you CAN go across this is to use the `setwd(absolute_file_path_to_your_directory)` function. Here, `set` stands for set and `wd` stands for working directory. If you are not sure about what the current working directory actually is, you can use `getwd()` which is the equivalent to `setwd(file_path)`. This enables you to read in a data set -- if the file is in the working directory -- by only using `read_csv(file_name.csv)`.  
 However, if you have ever worked on an R project with other people in a group and exchanged scripts regularly, you may have encountered one of the big problems with this `setwd(file_path)` approach: as it only takes absolute paths like this one: "/Users/felixlennert/Library/Mobile Documents/com~apple~CloudDocs/Studium/WHK Regensburg/Kurse/SS 2020/Big Data Analysis/big-data-analysis-with-r-2020/scripts/", no other person will be able to just run this script without making any changes^[This becomes especially painful if you teach R to your students and have to grade 18 submissions and, hence, have to paste your personal directory's file path into each of these submissions.]. There are no two machines which have the exact same file structure.  
 This is where RStudio Projects come into play: they make every file path relative. The Project file (ends with .Rproj) basically sets the working directory to the folder it is in. Hence, if you want to send your work to a peer or a teacher, just send a folder which also contains the .Rproj file and they will be able to keep on working on your project without the hassle of pasting file paths into `setwd()` commands.
 
 ### How to create an RStudio Project?
 
-I strongly suggest that you set up a project which is dedicated to this course. 
+I strongly suggest that you set up a project which is dedicated to this course.
 
-1. In RStudio, click File >> New Project… >> New Project…  
-2. A windows pops up which lets you select between "New Directory", "Existing Directory", and "Version Control." The first option creates a new folder which is named after your project, the second one "associates a project with an existing working directory," and the third one only applies to version control (like, for instance, GitHub) users. I suggest that you click "New Directory".  
+1. In RStudio, click File >> New Project… >> New Project…
+2. A windows pops up which lets you select between "New Directory", "Existing Directory", and "Version Control." The first option creates a new folder which is named after your project, the second one "associates a project with an existing working directory," and the third one only applies to version control (like, for instance, GitHub) users. I suggest that you click "New Directory".
 3. Now you need to specify the type of the project (Empty project, R package, or Shiny Web Application). In our case, you will need an "Empty project." Hit it!  
-4. The final step is to choose the folder the project will live in. If you have already created a folder which is related to this course, choose this one and let the project live in there as a sub-directory.  
-5. When you write code for our course in the future, you *first* open the R project and then create either a new script or open a former one (e.g., by going through the "Files" tab in the respective pane which will show the right directory already.)  
+4. The final step is to choose the folder the project will live in. If you have already created a folder which is related to this course, choose this one and let the project live in there as a sub-directory.
+5. When you write code for our course in the future, you *first* open the R project and then create either a new script or open a former one (e.g., by going through the "Files" tab in the respective pane which will show the right directory already.)
 
 ## Version control: GitHub
 
-If you are a more advanced user of Microsoft Word, you may know the "Track Changes" feature. You can, for instance, activate it if you do somebody a favor and proof-read their thesis draft. "Track Changes" then keeps track of the changes you make -- as you might have guessed already.  
+If you are a more advanced user of Microsoft Word, you may know the "Track Changes" feature. You can, for instance, activate it if you do somebody a favor and proof-read their thesis draft. "Track Changes" then keeps track of the changes you make -- as you might have guessed already.
 
-This exists for coding as well. The times when you named your files "regression_analysis_firsttry.R", "regression_analysis_secondtry.R", not to forget to mention "regression_analysis_final_version.R" and "regression_analysis_the_real_final_version.R" are over as soon as you put GitHub into your toolbox -- and trust me, you will not miss them.  
+This exists for coding as well. The times when you named your files "regression_analysis_firsttry.R", "regression_analysis_secondtry.R", not to forget to mention "regression_analysis_final_version.R" and "regression_analysis_the_real_final_version.R" are over as soon as you put GitHub into your toolbox -- and trust me, you will not miss them.
 
-GitHub also goes well together with RStudio Projects. However, it is fairly complicated to get one's head around it in the very beginning. There is an excellent tutorial by -- again -- Jennifer Bryan, who has also written an article on this very subject [@bryan2017], which you should definitely have a look at. I just recently (i.e., three months ago) really took the time (to be specific, one afternoon and half the subsequent evening) to set up my GitHub account properly and copy my current projects in there. I am convinced that it will definitely make many things a lot easier if you integrate it in your working process from the very beginning of your coding career. The tutorial, named "Happy Git and GitHub for the useR", can be found [here](https://happygitwithr.com).
+GitHub also goes well together with RStudio Projects. However, it is fairly complicated to get one's head around it in the very beginning. There is an excellent tutorial by -- again -- Jennifer Bryan, who has also written an article on this very subject [@bryan2017], which you should definitely have a look at. I just recently (i.e., three months ago) really took the time (to be specific, one afternoon and half the subsequent evening) to set up my GitHub account properly and copy my current projects in there. I am convinced that it will definitely make things a lot easier if you integrate it in your working process from the very beginning of your coding career. The tutorial, named "Happy Git and GitHub for the useR", can be found [here](https://happygitwithr.com).
 
 ## Further links
 
 * Hadley Wickham and Garrett Grolemund wrote an [entire chapter](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) in R4DS on Projects.  
 * Need more motivation? Jennifer Bryan tells you under which circumstances she would set your machine on fire: [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/). 
-* If you have created your project folder and are now unsure how to structure, read Chris von Csefalvay's [blog post](https://chrisvoncsefalvay.com/2018/08/09/structuring-r-projects/) on how to do it.
+* If you have created your project folder and are now unsure how to structure it, read Chris von Csefalvay's [blog post](https://chrisvoncsefalvay.com/2018/08/09/structuring-r-projects/) on how to do it.
 
 # Before you start: R scripts and RMarkdown
 
-In this course, you will work with two sorts of documents to store your code in: R scripts (suffix: .R) and RMarkdown documents (suffix: .Rmd). In the following, I will briefly introduce you to them.
+In this course, you will work with two sorts of documents to store your code in: R scripts (suffix `.R`) and RMarkdown documents (suffix `.Rmd`). In the following, I will briefly introduce you to both of them.
 
 ## R scripts
 
-The console, where you can only execute your code, is great for experimenting with R. If you want to store it -- e.g., for sharing -- you need something different. This is where R scripts come in handy. When you are in RStudio, you create a new script by either clicking File >> New File >> R Script or ctrl/cmd+shift+n. There are multiple ways to run code in the script:   
+The console, where you can only execute your code, is great for experimenting with R. If you want to store it -- e.g., for sharing -- you need something different. This is where R scripts come in handy. When you are in RStudio, you create a new script by either clicking `File >> New File >> R Script` or ctrl/cmd+shift+n. There are multiple ways to run code in the script:   
 * cmd/ctrl+return (Mac/Windows) -- execute entire expression and jump to next line   
 * option/alt+return (Mac/Windows) -- execute entire expression and remain in line   
 * cmd/ctrl+shift+return (Mac/Windows) -- execute entire script from the beginning to the end (rule: every script you hand in or send to somebody else should run smoothly from the beginning to the end)   
@@ -143,7 +143,7 @@ If you want to make annotations to your code (which you should do because it mak
 
 A time will come where you will not just do analyses for yourself in R, but you also will have to communicate them. Let's take a bachelor's or master's thesis as an example: you need a type of document that is able to encapsulate: text (properly formatted), visualizations (tables, graphs, maybe images), and references. An RMarkdown document can do it all, plus, your entire analysis can live in there as well. So there is no need anymore for the cumbersome process of copying data from MS Excel or IBM SPSS into an MS Word table, you just tell Markdown what it should communicate and what not. (Note that all the project work for this course has to be handed in using R Markdown files.) In the following, I will not provide you with an exhaustive introduction to RMarkdown. Instead, I will focus on getting you started and then referring you to better, more exhaustive resources. It is not that I am too lazy to write a big tutorial, but there are state-of-the-art tutorials and resources (which mainly come straight from people who work on the forefront of the development of these tools) which are available for free. By linking to them, I want to encourage you to get involved and dig into this stuff. So, let's get you started!
 
-You create an RMarkdown file by clicking File >> New File >> R Markdown…. Then, a window pops up that looks like this:
+You create an RMarkdown file by clicking `File >> New File >> R Markdown`…. Then, a window pops up that looks like this:
 
 ![Fig. 4: new RMarkdown](figures/new_markdown_1.png)
 
@@ -164,7 +164,7 @@ In the top section, surrounded by `---`, you can see the so-called YAML header (
 After the YAML header, there is a code chunk. Code chunks start with ` ```{r} ` and end with ` ``` `. Inside the code chunk, you can write R code which can be executed by either clicking the green "Play" button or by using the same keyboard shortcuts as in scripts. There are several chunk options available: either click on the sprocket or check them out online and include them in the chunk's header (like this: ` ```{r include=FALSE} `). 
 Beyond that, you can (and should) name your chunks. This makes it easier to find the flawed ones when your document fails to knit. This is done by simply including the name into the title like this: ` ```{r cars} `. Find more on chunk options [here](https://bookdown.org/yihui/rmarkdown/r-code.html).
 
-The double hashtags imply that "R Markdown" is a header. In the text, there are examples on how to include links ("<>"), how to make text bold (double asterixes), etc. For more information on how to format plain text in an RMarkdown document, check out the RMarkdown [cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf?_ga=2.261726157.1753636382.1588487988-401398042.1588487988) and [Reference guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.261726157.1753636382.1588487988-401398042.1588487988).
+The double hashes imply that "R Markdown" is a header. In the text, there are examples on how to include links ("<>"), how to make text bold (double asterixes), etc. For more information on how to format plain text in an RMarkdown document, check out the RMarkdown [cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf?_ga=2.261726157.1753636382.1588487988-401398042.1588487988) and [Reference guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.261726157.1753636382.1588487988-401398042.1588487988).
 
 ## Further links
 
@@ -185,7 +185,8 @@ Today, you are going to make your first steps with R. In the following, you will
 Being a fancy calculator implies that you can extend it as you want. One of the big upsides of using R is that due to its active community, whose members are permanently striving to make it a bit better, we R members are basically standing on the shoulders of giants. You can install packages from CRAN by using the `install.packages()` command.
 
 ```{r}
-# install.packages("tidyverse") # insert '#' if you want R not to execute the things that stand to its right; pretty useful for annotating code
+install.packages("tidyverse") # installs the tidyverse package
+# insert '#' if you want R not to execute the things that stand to its right; pretty useful for annotating code
 ```
 
 CRAN packages have to fulfill certain [requirements](https://cran.r-project.org/web/packages/submission_checklist.html) and packages are updated on a certain pace. If you want to use other packages or get development versions, you can also install packages from GitHub using the `devtools` package. 
@@ -306,7 +307,7 @@ direct_speech <- '"It has never been easy to learn how to code," said my profess
 You cannot really "do" anything with character vectors, except for comparison.  
 
 ```{r}
-# text_character + direct_speech # remove '#' if you want to try
+#text_character + direct_speech # remove '#' if you want to try
 text_character == text_character
 ```
 
@@ -404,6 +405,7 @@ Using singular square brackets gives you a sub-list:
 sublist <- new_list[2]
 sublist
 typeof(sublist)
+
 ```
 
 Double square brackets gives you the component:
@@ -508,21 +510,5 @@ new_tibble[[1]][[2]] # second value of first column
 * Probably one of the hardest things in this tutorials to get one's head around are factors. [Here](https://www.gormanalysis.com/blog/r-introduction-to-factors-tutorial/) you can find more about them.       
 * Some [basic tutorials](https://www.tutorialspoint.com/r/r_data_types.htm).         
 * If you want to learn more about data types, click [here](https://www.statmethods.net/input/datatypes.html).
-
-# Assignment #1
-
-1. Install R and RStudio.   
-2. Set RStudio up as you wish to. Choose a nice pane layout and a dope theme.   
-3. Create a folder which is dedicated to this course. Set up your folder with folders for literature (yeah, I am sorry, but you will have to read some papers for this course in the future), slides, and one Project folder. Think deliberately about getting into GitHub (if your answer is yes, you should set up the GitHub repo before the project).   
-5. Set up RMarkdown. Write a short text on your expectations for this course. It should at least contain: a header, an image, an unordered list. Knit it to HTML and PDF. Bonus points for including references to papers that you want to talk about in the theoretical sessions.  
-6. Install and load the `tidyverse` package. 
-7. Bookmark the [tidyverse style guide](https://style.tidyverse.org/index.html).
-8. A farmer has 53323 chicken, 1334 cows, and 4323 horses.
-    (a) Store them in a vector. Name the elements.
-    (b) The animals have bred. There are now 75 per cent more chicken, 30 per cent more cows, and 50 per cent more horses. What is this in absolute numbers? Store the results in a new vector. Round up the results using the `ceiling()` function.
-    (c) The farmer has to pay the tax amount x for every 2000th animal of a certain breed. How many times x does she have to pay for every breed (hint: use the `floor()` function)? For which breed does she have to pay the most (you can use the `max()` function for this)?
-9. Store the data from task 3 in a tibble. Name the columns `breed`, `number_timepoint_1`, `number_timepoint_2`, `number of tax units`.
-    (a) Which variable should be converted to a factor variable?
-    (b) What's the difference in numbers between time point 1 and time point 2? Store the result in a vector named `difference`.
 
 # References

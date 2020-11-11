@@ -1,0 +1,28 @@
+---
+title: "Exercises Week 2"
+author: "Felix Lennert"
+date: "2020-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Assignment #1
+
+1. Install R and RStudio.   
+2. Set RStudio up as you wish to. Choose a nice pane layout and a dope theme.   
+3. Create a folder which is dedicated to this course. Set up your folder with folders for literature (yeah, I am sorry, but you will have to read some papers for this course in the future), slides, and one Project folder. Think deliberately about getting into GitHub (if your answer is yes, you should set up the GitHub repo before the project).   
+5. Set up RMarkdown. Write a short text on your expectations for this course. It should at least contain: a header, an image, an unordered list. Knit it to HTML and PDF. Bonus points for including references to papers that you want to talk about in the theoretical sessions.  
+6. Install and load the `tidyverse` package. 
+7. Bookmark the [tidyverse style guide](https://style.tidyverse.org/index.html).
+8. A farmer has 53323 chicken, 1334 cows, and 4323 horses.
+    (a) Store them in a vector. Name the elements.
+    (b) The animals have bred. There are now 75 per cent more chicken, 30 per cent more cows, and 50 per cent more horses. What is this in absolute numbers? Store the results in a new vector. Round up the results using the `ceiling()` function.
+    (c) The farmer has to pay the tax amount x for every 2000th animal of a certain breed. How many times x does she have to pay for each breed (hint: use the `floor()` function)? For which breed does she have to pay the most (you can use the `max()` function for this)?
+9. Store the data from task 3 in a tibble. Name the columns `breed`, `number_timepoint_1`, `number_timepoint_2`, `number of tax units`.
+    (a) Which variable should be converted to a factor variable?
+    (b) What's the difference in numbers between time point 1 and time point 2? Store the result in a vector named `difference`. (Hint: access the columns with the `[[` operator and make use of the fact that R is vectorized.)
+    
+Assignment is due before our next session, i.e., 2020-11-18. You can hand them in group-wise on GRIPS.
