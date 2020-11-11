@@ -108,7 +108,7 @@ I strongly suggest that you set up a project which is dedicated to this course.
 
 1. In RStudio, click File >> New Project… >> New Project…
 2. A windows pops up which lets you select between "New Directory", "Existing Directory", and "Version Control." The first option creates a new folder which is named after your project, the second one "associates a project with an existing working directory," and the third one only applies to version control (like, for instance, GitHub) users. I suggest that you click "New Directory".
-3. Now you need to specify the type of the project (Empty project, R package, or Shiny Web Application). In our case, you will need an "Empty project." Hit it!  
+3. Now you need to specify the type of the project (Empty project, R package, or Shiny Web Application). In our case, you will need an "new project." Hit it!  
 4. The final step is to choose the folder the project will live in. If you have already created a folder which is related to this course, choose this one and let the project live in there as a sub-directory.
 5. When you write code for our course in the future, you *first* open the R project and then create either a new script or open a former one (e.g., by going through the "Files" tab in the respective pane which will show the right directory already.)
 
